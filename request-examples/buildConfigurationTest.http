@@ -4,8 +4,8 @@
 @password = admin
 
 ### Hardcoded test data
-@projectId = {{$random.alphabetic(10)}}
-@buildTypeId = {{$random.alphabetic(10)}}
+@projectId = testProjectId
+@buildTypeId = testBuildTypeId
 
 ### Get all projects
 GET http://admin:admin@localhost:8111/app/rest/projects/
