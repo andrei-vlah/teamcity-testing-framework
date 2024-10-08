@@ -1,34 +1,21 @@
 package com.example.teamcity.api.models;
 
-import com.github.javafaker.Faker;
+import com.example.teamcity.api.annotations.Random;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@AllArgsConstructor
-@NoArgsConstructor
 @Builder
 @Data
-public class Project {
-    private ParentProject parentProject;
-    private String name;
+@AllArgsConstructor
+@NoArgsConstructor
+@JsonIgnoreProperties(ignoreUnknown = true)
+public class Project extends BaseModel {
+    @Random
     private String id;
-    private boolean copyAllAssociatedSettings;
-
-    @Builder
-    @Data
-    public static class ParentProject {
-        private String locator;
-    }
-
-    public static Project createRandomProject() {
-        Faker faker = new Faker();
-        return Project.builder()
-                .parentProject(new ParentProject("_Root"))
-                .id(faker.ancient().titan())
-                .name(faker.superhero().name())
-                .copyAllAssociatedSettings(true)
-                .build();
-    }
+    @Random
+    private String name;
+    private String locator;
 }

@@ -1,15 +1,18 @@
 package com.example.teamcity.api.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class Property {
-    private String name;
-    private String value;
+public class Steps extends BaseModel{
+    private String count;
+    private List<Step> step;
 }
