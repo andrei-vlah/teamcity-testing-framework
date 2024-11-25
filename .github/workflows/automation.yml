@@ -12,6 +12,9 @@ jobs:
   validate-checkstyle:
     runs-on: ubuntu-latest
     steps:
+      - name: Make mvnw and all scripts executable
+        run: chmod -R +x ./
+
       - uses: actions/checkout@v4
 
       - name: Set up JDK
@@ -27,6 +30,9 @@ jobs:
     needs: validate-checkstyle
     runs-on: ubuntu-latest
     steps:
+      - name: Make mvnw and all scripts executable
+        run: chmod -R +x ./
+
       - uses: actions/checkout@v4
 
       - name: TeamCity Setup

@@ -7,9 +7,6 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - name: Make mvnw and all scripts executable
-        run: chmod -R +x ./
-
       - name: Build frontend
         run: echo Собирается билд фронтенда \(прогоняются юнит тесты при сборке, запускаются линтеры\), формируется и публикуется Docker образ
 
