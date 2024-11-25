@@ -79,7 +79,7 @@ public class CreateProjectTest extends BaseUiTest {
         BuildTypePage.open(project2.getId());
         buildTypePage.getSubmitButton().shouldHave(Condition.disabled);
         buildTypePage.getUrlInput().shouldHave(Condition.disabled);
-        System.out.println();
+
     }
 
     @Test(description = "User should NOT be able to create build type with empty name", groups = {"Negative"})
