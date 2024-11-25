@@ -7,6 +7,9 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      - name: Make mvnw and all scripts executable
+        run: chmod -R +x ./
+
       - name: Build backend
         run: echo Собирается билд бекенда \(прогоняются юнит тетсы при сборке\), формируется и публикуется Docker образ
 
