@@ -32,7 +32,7 @@ public class ProjectsPage extends BasePage {
     }
 
     public ProjectsPage() {
-        header.shouldBe(Condition.visible, BASE_WAITING);
+        search.shouldBe(Condition.visible, BASE_WAITING);
     }
 
     public List<ProjectElement> getProjects() {
