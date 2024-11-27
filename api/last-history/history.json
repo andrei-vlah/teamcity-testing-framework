@@ -1,0 +1,1 @@
+{"2e6df2301e4e82e0f0a5e36536b6aca1":{"statistic":{"failed":0,"broken":0,"skipped":0,"passed":1,"unknown":0,"total":1},"items":[{"uid":"133df4611afc037b","reportUrl":"https://andrei-vlah.github.io/teamcity-testing-framework/api/14//#testresult/133df4611afc037b","status":"passed","time":{"start":1732724231815,"stop":1732724281746,"duration":49931}}]}}
