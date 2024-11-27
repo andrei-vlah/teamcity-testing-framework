@@ -20,6 +20,9 @@ public class ProjectsPage extends BasePage {
 
     private SelenideElement header = $("[data-test = 'overview-header']");
 
+    private SelenideElement search = $("[data-test = 'sidebar-search']");
+
+
     // ElementCollection -> List<ProjectElement>
     // UI elements -> List<Object>
     // ElementCollection -> List<BasePageElement>
