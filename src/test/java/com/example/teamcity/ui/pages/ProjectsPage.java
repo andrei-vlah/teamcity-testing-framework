@@ -18,7 +18,7 @@ public class ProjectsPage extends BasePage {
 
     private SelenideElement spanFavoriteProjects = $("span[class='ProjectPageHeader__title--ih']");
 
-    private SelenideElement header = $(".MainPanel__router--gF > div");
+    private SelenideElement header = $("[data-test = 'overview-header']");
 
     // ElementCollection -> List<ProjectElement>
     // UI elements -> List<Object>
