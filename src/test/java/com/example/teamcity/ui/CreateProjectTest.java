@@ -78,11 +78,11 @@ public class CreateProjectTest extends BaseUiTest {
         superUserCheckRequests.getRequest(Endpoint.USERS).create(testData.getUser());
 
         loginAs(testData.getUser());
+        ProjectsPage projectsPage = new ProjectsPage();
+        projectsPage.findAndOpenProject(project2.getName());
+        projectsPage.getEditProject().click();
 
-        Selenide.refresh();
-        Thread.sleep(30000);
-
-        BuildTypePage.open(project2.getId());
+//        BuildTypePage.open(project2.getId());
         buildTypePage.getSubmitButton().shouldHave(Condition.disabled);
         buildTypePage.getUrlInput().shouldHave(Condition.disabled);
     }
