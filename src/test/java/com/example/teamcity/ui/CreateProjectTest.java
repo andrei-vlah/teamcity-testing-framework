@@ -1,6 +1,7 @@
 package com.example.teamcity.ui;
 
 import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.Selenide;
 import com.example.teamcity.api.enums.Endpoint;
 import com.example.teamcity.api.models.BuildType;
 import com.example.teamcity.api.models.Project;
@@ -69,7 +70,7 @@ public class CreateProjectTest extends BaseUiTest {
     }
 
     @Test(description = "User should NOT be able to create build type for not their project", groups = {"Negative"})
-    public void userCreatesBuildTypeForNotTheirProjectTest() {
+    public void userCreatesBuildTypeForNotTheirProjectTest() throws InterruptedException {
         superUserCheckRequests.getRequest(PROJECTS).create(testData.getProject());
         Project project2 = superUserCheckRequests.<Project>getRequest(PROJECTS).create(generate(Project.class));
 
@@ -78,10 +79,12 @@ public class CreateProjectTest extends BaseUiTest {
 
         loginAs(testData.getUser());
 
+        Selenide.refresh();
+        Thread.sleep(30000);
+
         BuildTypePage.open(project2.getId());
         buildTypePage.getSubmitButton().shouldHave(Condition.disabled);
         buildTypePage.getUrlInput().shouldHave(Condition.disabled);
-
     }
 
     @Test(description = "User should NOT be able to create build type with empty name", groups = {"Negative"})
