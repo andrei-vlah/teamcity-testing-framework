@@ -1,7 +1,6 @@
 package com.example.teamcity.ui;
 
 import com.codeborne.selenide.Condition;
-import com.codeborne.selenide.Selenide;
 import com.example.teamcity.api.enums.Endpoint;
 import com.example.teamcity.api.models.BuildType;
 import com.example.teamcity.api.models.Project;
@@ -78,9 +77,6 @@ public class CreateProjectTest extends BaseUiTest {
         superUserCheckRequests.getRequest(Endpoint.USERS).create(testData.getUser());
 
         loginAs(testData.getUser());
-//        ProjectsPage projectsPage = new ProjectsPage();
-//        projectsPage.findAndOpenProject(project2.getName());
-//        projectsPage.getEditProject().click();
 
         BuildTypePage.open(project2.getId());
         buildTypePage.getSubmitButton().shouldHave(Condition.disabled);
