@@ -13,8 +13,7 @@ import com.example.teamcity.ui.pages.admin.CreateProjectPage;
 import org.testng.annotations.Test;
 
 import static com.codeborne.selenide.Condition.text;
-import static com.example.teamcity.api.enums.Endpoint.BUILD_TYPES;
-import static com.example.teamcity.api.enums.Endpoint.PROJECTS;
+import static com.example.teamcity.api.enums.Endpoint.*;
 import static com.example.teamcity.api.enums.Repos.GITHUB_SPRING_CORE;
 import static com.example.teamcity.api.enums.UserRoles.PROJECT_ADMIN;
 import static com.example.teamcity.api.generators.TestDataGenerator.generate;
@@ -25,6 +24,8 @@ public class CreateProjectTest extends BaseUiTest {
 
     @Test(description = "User should be able to create a project", groups = "Positive")
     public void userCreateProject() {
+        superUserCheckRequests.getRequest(USERS).create(testData.getUser());
+
         loginAs(testData.getUser());
 
         // взаимодействие с UI
@@ -51,6 +52,7 @@ public class CreateProjectTest extends BaseUiTest {
         String projectId = testData.getProject().getId();
 
         superUserCheckRequests.getRequest(PROJECTS).create(testData.getProject());
+        superUserCheckRequests.getRequest(USERS).create(testData.getUser());
         loginAs(testData.getUser());
 
         BuildTypePage.open(projectId);
@@ -67,7 +69,7 @@ public class CreateProjectTest extends BaseUiTest {
     }
 
     @Test(description = "User should NOT be able to create build type for not their project", groups = {"Negative"})
-    public void userCreatesBuildTypeForNotTheirProjectTest() {
+    public void userCreatesBuildTypeForNotTheirProjectTest() throws InterruptedException {
         superUserCheckRequests.getRequest(PROJECTS).create(testData.getProject());
         Project project2 = superUserCheckRequests.<Project>getRequest(PROJECTS).create(generate(Project.class));
 
@@ -79,7 +81,6 @@ public class CreateProjectTest extends BaseUiTest {
         BuildTypePage.open(project2.getId());
         buildTypePage.getSubmitButton().shouldHave(Condition.disabled);
         buildTypePage.getUrlInput().shouldHave(Condition.disabled);
-
     }
 
     @Test(description = "User should NOT be able to create build type with empty name", groups = {"Negative"})

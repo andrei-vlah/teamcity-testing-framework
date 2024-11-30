@@ -16,6 +16,7 @@ import static com.example.teamcity.api.generators.TestDataGenerator.generate;
 import static com.example.teamcity.api.spec.Specifications.authSpec;
 import static java.util.Collections.singletonList;
 
+@Test(groups = {"Regression"})
 public class BuildTypeTest extends BaseApiTest {
 
     @Test(description = "User should be able to create build type", groups = {"Positive", "CRUD"})

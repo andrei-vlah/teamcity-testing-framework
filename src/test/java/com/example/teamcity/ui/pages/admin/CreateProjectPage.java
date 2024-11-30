@@ -1,5 +1,6 @@
 package com.example.teamcity.ui.pages.admin;
 
+import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
 
@@ -9,6 +10,7 @@ public class CreateProjectPage extends CreateBasePage {
     private static final String PROJECT_SHOW_MODE = "createProjectMenu";
 
     private SelenideElement projectNameInput = $("#projectName");
+    private SelenideElement successMessage = $("#unprocessed_objectsCreated");
 
     public static CreateProjectPage open(String projectId) {
         return Selenide.open(CREATE_URL.formatted(projectId, PROJECT_SHOW_MODE), CreateProjectPage.class);
@@ -23,5 +25,6 @@ public class CreateProjectPage extends CreateBasePage {
         projectNameInput.val(projectName);
         buildTypeNameInput.val(buildTypeName);
         submitButton.click();
+        successMessage.shouldBe(Condition.visible, BASE_WAITING);
     }
 }
